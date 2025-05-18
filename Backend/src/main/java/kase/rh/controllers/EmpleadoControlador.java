@@ -24,6 +24,7 @@ public class EmpleadoControlador {
     @Autowired
     private EmpleadoServicio empleadoServicio;
 
+    // Metodo que lista todos los empleados
     // http://localhost:8080/rh-app/empleados
     @RequestMapping(value = "/empleados", method = RequestMethod.GET)
     public List<Empleado> obtenerEmpleados(){
@@ -47,6 +48,7 @@ public class EmpleadoControlador {
     public ResponseEntity<Empleado> obtenerEmpleadoPorId(@PathVariable Integer id){
         Empleado empleado = empleadoServicio.buscarEmpleadoPorId(id);
 
+        // Se comprueba si existe o no el empleado y se maneja la respuesta HTTP
         if (empleado != null){
             return ResponseEntity.ok(empleado);
         }
@@ -55,4 +57,11 @@ public class EmpleadoControlador {
         }
     }
 
+    // Metodo para guardar un empleado editado
+    // http://localhost:8080/rh-app/empleados
+    @RequestMapping(value = "/empleados", method = RequestMethod.PUT)
+    public ResponseEntity<Empleado> editarEmpleado(@RequestBody Empleado empleado){
+        logger.info("Empleado a actualizar: " + empleado.toString());
+        return ResponseEntity.ok(empleadoServicio.guardarEmpleado(empleado));
+    }
 }
