@@ -1,26 +1,28 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { NumericFormat } from 'react-number-format';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function ListadoEmpleados() {
 
     // Url para acceder al Backend de Spring Boot
     const urlBase = "http://localhost:8080/rh-app/empleados"
 
+    const location = useLocation(); // Devuelve informacion de la ruta actual
 
     // Maneja los datos del empleado
     // UseState es un hook de React que sirve para crear una variable de estado en un componente funcional
     const [empleados, setEmpleados] = useState([]);
 
 
-    // useEffect() Ejecuta codigo cuando se monta el componente
+    // useEffect() Ejecuta codigo cuando se monta el componente o 
     // El arreglo vacio indica que solo se ejecuta una vez
+    // Use [location] cuando quieras ejecutar lógica cada vez que cambia la ruta
     useEffect(() => {
 
         // Ejecuta una funcion para obtener los datos del backend
         cargarEmpleados();
-    }, []);
+    }, [location]);
 
     // Funcion de tipo Asincrona que obtiene los datos del backend
     const cargarEmpleados = async () => {

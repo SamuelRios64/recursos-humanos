@@ -28,7 +28,7 @@ export default function EliminarEmpleado() {
     // Hook que carga los datos del empleado a eliminar, este se carga cuando se monta el componente
     useEffect(()=>{
         cargarEmpleado();
-    }, [])
+    }, [id, navegacion])
 
     // Metodo asincrono que trae los datos del empleado del backend
     const cargarEmpleado = async () => {
@@ -43,7 +43,7 @@ export default function EliminarEmpleado() {
     const eliminarEmpleado = async ()=>{
 
         // Hacemos la peticion http delete para eliminar el empleado
-        axios.delete(`${urlBase}/${id}`);
+        await axios.delete(`${urlBase}/${id}`);
 
         // Despues de eso, navegamos al inicio
         navegacion(`/`);
