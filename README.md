@@ -35,8 +35,8 @@
 * Configurar la conexion hacia la base de datos, teniendo en cuenta sus credenciales.
 Se tiene que dirigir al archivo ```application.properties``` de la carpeta ```resources``` y colocar sus credenciales, Ejemplo:
 ```bash
-spring.resource.username=root
-spring.resource.password=root
+spring.datasource.username=root
+spring.datasource.password=root
 ```
 
 ---
