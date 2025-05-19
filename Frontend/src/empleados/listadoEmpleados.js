@@ -78,7 +78,7 @@ export default function ListadoEmpleados() {
                         <td className='text-center'>
                             <div>
                                 <Link to={`/editar/${empleado.idEmpleado}`} className='btn btn-warning btn-sm me-3'>Editar</Link>
-                                <Link to={`/editar/${empleado.idEmpleado}`} className='btn btn-danger btn-sm'>Eliminar</Link>
+                                <Link to={`/eliminar/${empleado.idEmpleado}`} className='btn btn-danger btn-sm'>Eliminar</Link>
                             </div>    
                         </td> 
                     </tr>

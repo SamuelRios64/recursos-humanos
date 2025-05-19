@@ -15,7 +15,7 @@ export default function navegacion() {
 
                     {/* Link del home */}
                     <li className="nav-item">
-                      <a className="nav-link" aria-current="page" href="/">Home</a>
+                      <Link to={`/`} className="nav-link" aria-current="page">Home</Link>
                     </li>
 
                     {/* Link hacia el formulario de agregar empleado */}

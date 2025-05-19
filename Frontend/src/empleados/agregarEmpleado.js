@@ -5,7 +5,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 
 // Hook de React Router que permite redirijir a otra ruta
-import { useNavigate } from 'react-router-dom' 
+import { Link, useNavigate } from 'react-router-dom' 
 
 // Definicion del componente
 // Es un componente funcional de React
@@ -115,7 +115,7 @@ export default function AgregarEmpleado() {
                 <button type="submit" className="btn btn-warning btn-sm me-3">Guardar</button>
 
                 {/* Boton que redirige al inicio */}
-                <a href='/' className='btn btn-danger btn-sm'>Regresar</a>
+                <Link to={`/`} className='btn btn-danger btn-sm'>Regresar</Link>
             </div>
         </form>
     </div>

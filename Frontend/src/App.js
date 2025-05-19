@@ -1,8 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Navegacion from "./template/navegacion";
 import ListadoEmpleados from "./empleados/listadoEmpleados.js";
 import AgregarEmpleado from "./empleados/agregarEmpleado.js"
 import EditarEmpleado from "./empleados/editarEmpleado.js";
-import Navegacion from "./template/navegacion";
+import EliminarEmpleado from "./empleados/eliminarEmpleado.js";
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
 
           {/* En esta ruta va  a estar un formulario para editar un cliente */}
           <Route exact path ="/editar/:id" element={<EditarEmpleado/>}/>
+
+          <Route exact path="/eliminar/:id" element={<EliminarEmpleado/>}/>
 
           {/* Y de aquí para bajo se llaman los componentes con sus rutas donde se van a mostrar */}
         </Routes>
