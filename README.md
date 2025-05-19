@@ -32,6 +32,12 @@
 * [Node.js](https://nodejs.org/) (versión 16 o superior)
 * [Maven](https://maven.apache.org/)
 * [Git](https://git-scm.com/)
+* Configurar la conexion hacia la base de datos, teniendo en cuenta sus credenciales.
+Se tiene que dirigir al archivo ```application.properties``` de la carpeta ```resources``` y colocar sus credenciales, Ejemplo:
+```bash
+spring.datasource.username=root
+spring.datasource.password=root
+```
 
 ---
 
@@ -59,12 +65,12 @@ mvn spring-boot:run
 En una nueva terminal:
 
 ```bash
-cd ../Frontend
+cd Frontend
 npm install
-npm run dev
+npm start
 ```
 
-* La aplicación estará disponible en: `http://localhost:5173`
+* La aplicación estará disponible en: `http://localhost:3000`
 
 
 ## 📌 Funcionalidades principales
