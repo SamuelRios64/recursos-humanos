@@ -32,6 +32,12 @@
 * [Node.js](https://nodejs.org/) (versión 16 o superior)
 * [Maven](https://maven.apache.org/)
 * [Git](https://git-scm.com/)
+* Configurar la conexion hacia la base de datos, teniendo en cuenta sus credenciales.
+Se tiene que dirigir al archivo ```application.properties``` de la carpeta ```resources``` y colocar sus credenciales, Ejemplo:
+```bash
+spring.resource.username=root
+spring.resource.password=root
+```
 
 ---
 
