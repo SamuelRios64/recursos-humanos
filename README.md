@@ -11,7 +11,7 @@
 
 ### Backend
 
-* Java 17
+* Java 21
 * Spring Boot
 * Spring Data JPA
 * Spring Web
@@ -28,7 +28,7 @@
 
 ## ⚙️ Requisitos previos
 
-* [Java 17](https://adoptium.net/)
+* [Java 17 o Superior](https://adoptium.net/)
 * [Node.js](https://nodejs.org/) (versión 16 o superior)
 * [Maven](https://maven.apache.org/)
 * [Git](https://git-scm.com/)
