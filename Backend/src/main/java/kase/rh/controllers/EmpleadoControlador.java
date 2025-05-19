@@ -43,7 +43,7 @@ public class EmpleadoControlador {
     }
 
     // Metodo que busca un empleado por su id
-    // http://localhost:8080/rh-app/empleados/id  id=algun id de empleado
+    // http://localhost:8080/rh-app/empleados/{id}  id=algun id de empleado
     @RequestMapping(value="/empleados/{id}", method= RequestMethod.GET)
     public ResponseEntity<Empleado> obtenerEmpleadoPorId(@PathVariable Integer id){
         Empleado empleado = empleadoServicio.buscarEmpleadoPorId(id);
@@ -63,5 +63,13 @@ public class EmpleadoControlador {
     public ResponseEntity<Empleado> editarEmpleado(@RequestBody Empleado empleado){
         logger.info("Empleado a actualizar: " + empleado.toString());
         return ResponseEntity.ok(empleadoServicio.guardarEmpleado(empleado));
+    }
+
+    // Metodo para eliminar un empleado
+    // http://localhost:8080/rh-app/eliminar/{id}  id: id de un cliente
+    @RequestMapping(value = "/empleados/{id}", method = RequestMethod.DELETE)
+    // @DeleteMapping("/empleados/{id}")
+    public void eliminarEmpleado(@PathVariable Integer id) {
+        empleadoServicio.eliminarEmpleado(id);
     }
 }
