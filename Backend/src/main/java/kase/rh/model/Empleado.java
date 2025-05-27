@@ -1,8 +1,6 @@
 package kase.rh.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +16,9 @@ public class Empleado {
     @Id
     private Integer idEmpleado;
     private String nombre;
-    private String departamento;
-    private Integer sueldo;
 
+    @ManyToOne
+    @JoinColumn(name = "idDepartamento" , referencedColumnName = "idDepartamento")
+    private Departamento departamento;
+    private double sueldo;
 }
