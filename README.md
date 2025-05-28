@@ -1,6 +1,6 @@
 # Recursos Humanos
 
-**Recursos Humanos** es una aplicación web diseñada para gestionar empleados. El proyecto está estructurado en dos partes:
+**Recursos Humanos** es una aplicación web diseñada para gestionar empleados y departamentos. El proyecto está estructurado en dos partes:
 
 * **Backend**: API REST construida con Spring Boot.
 * **Frontend**: Interfaz de usuario desarrollada con React.
@@ -15,7 +15,6 @@
 * Spring Boot
 * Spring Data JPA
 * Spring Web
-* H2 Database (modo desarrollo)
 * Maven
 
 ### Frontend
@@ -58,7 +57,6 @@ mvn spring-boot:run
 ```
 
 * La API estará disponible en: `http://localhost:8080`
-* La consola de H2 estará en: `http://localhost:8080/h2-console` (usuario: `sa`, sin contraseña)
 
 ### 3. Ejecutar el Frontend
 
@@ -76,6 +74,7 @@ npm start
 ## 📌 Funcionalidades principales
 
 * **Gestión de empleados**: Crear, listar, actualizar y eliminar empleados.
+* **Gestión de departamentos**: Crear, listar, actualizar y eliminar departamentos.
 * **Interfaz intuitiva**: Navegación sencilla y amigable para el usuario.
 * **API RESTful**: Endpoints bien definidos para operaciones CRUD.
 
