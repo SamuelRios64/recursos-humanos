@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 // Importa react, para trabajar con componentes funcionales
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // Hook de React Router que permite redirijir a otra ruta
 import { Link, useNavigate } from 'react-router-dom' 
@@ -10,6 +10,10 @@ import { Link, useNavigate } from 'react-router-dom'
 // Definicion del componente
 // Es un componente funcional de React
 export default function AgregarEmpleado() {
+
+    const urlBaseDepartamentos = "http://localhost:8080/rh-app/departamentos";
+    const urlBaseEmpleados = "http://localhost:8080/rh-app/empleados";
+     // url donde vamos a hacer la petición
 
     // Se una useNavegate() para obtener una funcion que permite redireccionar a otra ruta programaticamente
     let navegacion = useNavigate();
@@ -26,9 +30,41 @@ export default function AgregarEmpleado() {
         sueldo:""
     })
 
+    // Estado donde se van a cargar los departamentos
+    const [departamentos, setDepartamentos] = useState([]);
+
+    // Estado que guarda la opcion de la lista desplegable
+    const [departa, setDepartamento] = useState('');
+
     // Desectructuracion del objeto empleado
     // Esto sirve para acceder directametne a cada campo del objeto, sin escribir empleado.nombre etc
     const {idEmpleado, nombre, departamento, sueldo} = empleado
+
+
+    useEffect(()=>{
+        cargarDepartamentos();
+    }, [])
+
+    const cargarDepartamentos = async () => {
+        const resultado = await axios.get(urlBaseDepartamentos);
+        setDepartamentos(resultado.data);
+    }
+
+    const cambiarSueldo = (e) => {
+        const nombreDepartamento = e.target.value;
+        const departamentoSeleccionado = departamentos.find(dep => dep.nombreDepartamento === nombreDepartamento);
+        
+        // Actualiza el estado seleccionado (opcional, si aún lo usas)
+        setDepartamento(nombreDepartamento);
+
+        // Actualiza el empleado
+        setEmpleado({
+            ...empleado,
+            departamento: departamentoSeleccionado,
+            sueldo: departamentoSeleccionado?.sueldoDepartamento || '' // coloca sueldoBase si existe, si no, deja en blanco
+        });
+    }
+
   
     // Manejador de cambio de inputs
     // Esta funciíon se ejecuta cuando el usuario escribe en un input del formulario
@@ -46,16 +82,17 @@ export default function AgregarEmpleado() {
 
         // Evita que el navegador recargue la pagina al enviar el formulario
         e.preventDefault(); 
-        const urlBase = "http://localhost:8080/rh-app/empleados"; // url donde vamos a hacer la petición
+
 
         // axios.post(...) hace una peticion HTTP POST al backend, enviando los datos del empleado
         // await espera a que la peticion termine antes de continuar
-        await axios.post(urlBase, empleado);
+        await axios.post(urlBaseEmpleados, empleado);
 
         // Redirigimos a la pagina de inicio despues de guardar
         navegacion('/');
 
     }
+    // 
 
     // Asociamos los datos del formulario con el objeto de empleado y los guardamos.
     return (
@@ -95,16 +132,30 @@ export default function AgregarEmpleado() {
                 <input type='text' className="form-control" id='nombre' name='nombre' value={nombre} onChange={(e) => onInputChange(e)}></input> 
             </div>
 
-            {/* Entreada para el departamento */}
+            {/* Lista desplegable de los departamentos */}
             <div className="mb-3">
-                <label htmlFor="departamento" className="form-label">Departamento</label>
-                <input type="text" className="form-control" id="departamentoEmpleado" name='departamento' value={departamento} onChange={(elemento) => onInputChange(elemento)}></input>
+                <label className='form-label' htmlFor='departamento'>Departamento</label> 
+                <select
+                    id="departamento"
+                    className="form-select"
+                    name='departamento'
+                    value={departa}
+                    required
+                    onChange={(e) => cambiarSueldo(e)}
+                >
+                    <option value="">-- Selecciona un departamento --</option>
+                    {departamentos.map((departamento, indice) => (
+                    <option key={indice} value={departamento.nombreDepartamento}>
+                        {departamento.nombreDepartamento}
+                    </option>
+                    ))}
+                </select>
             </div>
 
             {/* Entrada para sueldo del empleado */}
             <div className='mb-3'>
                 <label htmlFor="sueldo" className="form-label">Sueldo</label>
-                <input type="number" className="form-control" id='sueldoEmpleado' name='sueldo' value={sueldo} 
+                <input type="number" className="form-control" id='sueldoEmpleado' name='sueldo' value={sueldo}
                     onChange={(elemento) => {onInputChange(elemento)}}></input>
             </div>
             

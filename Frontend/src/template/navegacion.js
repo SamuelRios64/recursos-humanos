@@ -22,6 +22,16 @@ export default function navegacion() {
                     <li className="nav-item">
                       <Link className="nav-link" to="/agregar">Agregar Empleado</Link>
                     </li>
+
+                    {/* Link hacia el formulario de agregar departamento */}
+                    <li className='nav-item'>
+                      <Link className='nav-link' to="/agregardepartamento">Agregar Departamento</Link>
+                    </li>
+
+                    {/* Link hacia la tabla de departamentos */}
+                    <li className = "nav-item">
+                      <Link className='nav-link' to="/departamentos">Departamentos</Link>
+                    </li>
                 </ul>
                 </div>
             </div>

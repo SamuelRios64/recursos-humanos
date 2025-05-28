@@ -71,16 +71,17 @@ export default function ListadoEmpleados() {
                     <tr key={indice}>
                         <th scope="row">{empleado.idEmpleado}</th>
                         <td>{empleado.nombre}</td>
-                        <td>{empleado.departamento}</td>
+
+                        
+                        { empleado.departamento?.nombreDepartamento ? ( <td>{empleado.departamento.nombreDepartamento}</td> ) : ( <td>Sin departamento</td> ) }
                         <td>
                             <NumericFormat value={empleado.sueldo}
-                            displayType={'text'} prefix={"$"}
-                            fixedDecimalScale/>
+                            displayType={'text'} prefix={"$ "}/>
                         </td>
                         <td className='text-center'>
                             <div>
                                 <Link to={`/editar/${empleado.idEmpleado}`} className='btn btn-warning btn-sm me-3'>Editar</Link>
-                                <Link to={`/eliminar/${empleado.idEmpleado}`} className='btn btn-danger btn-sm'>Eliminar</Link>
+                                <Link to={`/eliminar/${empleado.idEmpleado}`} className='btn btn-danger btn-sm me-3'>Eliminar</Link>
                             </div>    
                         </td> 
                     </tr>

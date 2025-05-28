@@ -11,7 +11,8 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 // Es un componente funcional de React
 export default function EditarEmpleado() {
 
-    const urlBase = "http://localhost:8080/rh-app/empleados"; // url donde vamos a hacer alguna petición
+    const urlBaseEmpleados = "http://localhost:8080/rh-app/empleados"; // url donde vamos a hacer alguna petición
+    const urlBaseDepartamentos = "http://localhost:8080/rh-app/departamentos"
 
     // Recuperamos el valor del id que recibimos en el url
     const {id} = useParams();
@@ -32,24 +33,29 @@ export default function EditarEmpleado() {
         sueldo:""
     });
 
-    // Desectructuracion del objeto empleado
-    // Esto sirve para acceder directametne a cada campo del objeto, sin escribir empleado.nombre etc
-    const {idEmpleado, nombre, departamento, sueldo} = empleado;
+    const [departamentos, setDepartamentos] = useState([]);
+    const [departa, setDepartamento] = useState('');
   
     // Se procesa algo cuando se carga un componente
     useEffect(()=>{
         cargarEmpleado();
+        cargarDepartamentos();
     },[]);
 
     // Metodo que obtiene los datos del cliente por id
     const cargarEmpleado = async () => {
         
         // Hacemos la peticion al backend
-        const resultado = await axios.get(`${urlBase}/${id}`);
+        const resultado = await axios.get(`${urlBaseEmpleados}/${id}`);
 
         // Agregamos los datos del usuario al estado del usuario en el componente
         setEmpleado(resultado.data);
-    }   
+    }
+
+    const cargarDepartamentos = async () => {
+        const resultado = await axios.get(urlBaseDepartamentos);
+        setDepartamentos(resultado.data);
+    }
 
     // Manejador de cambio de inputs
     // Esta funciíon se ejecuta cuando el usuario escribe en un input del formulario
@@ -61,6 +67,22 @@ export default function EditarEmpleado() {
         setEmpleado({...empleado, [e.target.name]: e.target.value}) // Actualizamos el estado de empleado
     }
 
+    const cambiarSueldo = (e) => {
+
+        const nombreDepartamento = e.target.value;
+        const departamentoSeleccionado = departamentos.find(dep => dep.nombreDepartamento === nombreDepartamento);
+            
+        // Actualiza el estado seleccionado (opcional, si aún lo usas)
+        setDepartamento(nombreDepartamento);        
+        // Actualiza el empleado
+        setEmpleado({
+            ...empleado,
+            departamento: departamentoSeleccionado,
+            sueldo: departamentoSeleccionado?.sueldoDepartamento || '' // coloca sueldoBase si existe, si no, deja en blanco
+        });
+        
+    }
+
     // Manejador del formulario
     const onSubmit = async (e) => {
 
@@ -69,7 +91,7 @@ export default function EditarEmpleado() {
         
         // axios.put(...) hace una peticion HTTP PUTal backend, enviando los datos actualizado o editados del empleado
         // await espera a que la peticion termine antes de continuar
-        await axios.put(urlBase, empleado);
+        await axios.put(urlBaseEmpleados, empleado);
 
         // Redirigimos a la pagina de inicio despues de guardar
         navegacion('/');
@@ -101,7 +123,7 @@ export default function EditarEmpleado() {
                         name="idEmpleado" // Coincide con el campo en el estado.
                         required={true} 
                         disabled={true}
-                        value={idEmpleado} // el valor mostrado en el input viene del estado
+                        value={empleado.idEmpleado} // el valor mostrado en el input viene del estado
                         onChange={(elemento)=> onInputChange(elemento)} // Actualiza el estado cuando el usuario escribe
                         />     
 
@@ -111,19 +133,32 @@ export default function EditarEmpleado() {
             {/* Entrada para el nombre */}
             <div className="mb-3">
                 <label htmlFor="nombre" className="form-label">Nombre</label>
-                <input type='text' className="form-control" id='nombre' name='nombre' value={nombre} onChange={(e) => onInputChange(e)}></input> 
+                <input type='text' className="form-control" id='nombre' name='nombre' value={empleado.nombre} onChange={(e) => onInputChange(e)}></input> 
             </div>
 
-            {/* Entreada para el departamento */}
             <div className="mb-3">
-                <label htmlFor="departamento" className="form-label">Departamento</label>
-                <input type="text" className="form-control" id="departamentoEmpleado" name='departamento' value={departamento} onChange={(elemento) => onInputChange(elemento)}></input>
+                <label className='form-label' htmlFor='departamento'>Departamento</label> 
+                <select
+                    id="departamento"
+                    className="form-select"
+                    name='departamento'
+                    value={departa}
+                    required
+                    onChange={(e) => cambiarSueldo(e)}
+                >
+                    <option value="">-- Selecciona un departamento --</option>
+                    {departamentos.map((departamento, indice) => (
+                    <option key={indice} value={departamento.nombreDepartamento}>
+                        {departamento.nombreDepartamento}
+                    </option>
+                    ))}
+                </select>
             </div>
 
             {/* Entrada para sueldo del empleado */}
             <div className='mb-3'>
                 <label htmlFor="sueldo" className="form-label">Sueldo</label>
-                <input type="number" className="form-control" id='sueldoEmpleado' name='sueldo' value={sueldo} 
+                <input type="number" className="form-control" id='sueldoEmpleado' name='sueldo' value={empleado.sueldo} 
                     onChange={(elemento) => {onInputChange(elemento)}}></input>
             </div>
             
