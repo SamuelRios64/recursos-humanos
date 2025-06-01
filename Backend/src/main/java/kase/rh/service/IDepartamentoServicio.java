@@ -9,5 +9,6 @@ public interface IDepartamentoServicio {
     public List<Departamento> listarDepartamentos();
     public Departamento buscarDepartamentoPorId(Integer id);
     public Departamento guardarDepartamento(Departamento departamento);
+    public Departamento guardarDepartamentoNuevo(Departamento departamento);
     public void eliminarDepartamento(Integer id);
 }

@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/rh-app")
-@CrossOrigin(value = "http://localhost:3000")
+@CrossOrigin(value = "http://localhost:5173")
 public class DepartamentoControlador {
 
     private static final Logger logger = LoggerFactory.getLogger(DepartamentoControlador.class);
@@ -38,7 +38,6 @@ public class DepartamentoControlador {
         Departamento departamento = departamentoServicio.buscarDepartamentoPorId(id);
 
         if (departamento != null){
-
             return ResponseEntity.ok(departamento);
         }
 
@@ -49,7 +48,7 @@ public class DepartamentoControlador {
     public Departamento agregarDepartamento(@RequestBody Departamento departamento){
         logger.info("Departamento a agregar = " + departamento.toString());
 
-        return departamentoServicio.guardarDepartamento(departamento);
+        return departamentoServicio.guardarDepartamentoNuevo(departamento);
     }
 
     @PutMapping("/departamentos")

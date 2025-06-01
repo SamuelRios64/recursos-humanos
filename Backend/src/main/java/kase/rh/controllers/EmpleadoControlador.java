@@ -14,7 +14,7 @@ import java.util.List;
 // http://localhost:8080/rh-app
 @RequestMapping("/rh-app")
 // Anotacion para hacer y recibir peticiones desde el frontend
-@CrossOrigin(value = "http://localhost:3000")
+@CrossOrigin(value = "http://localhost:5173")
 public class EmpleadoControlador {
 
     // Atributo para el manejo del logger

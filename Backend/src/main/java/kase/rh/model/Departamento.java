@@ -13,8 +13,7 @@ import lombok.NoArgsConstructor;
 public class Departamento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idDepartamento;
+    private Long idDepartamento;
     private String nombreDepartamento;
     private double sueldoDepartamento;
 }
