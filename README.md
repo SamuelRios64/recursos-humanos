@@ -63,12 +63,12 @@ mvn spring-boot:run
 En una nueva terminal:
 
 ```bash
-cd Frontend
+cd Frontend-vite
 npm install
-npm start
+npm run dev
 ```
 
-* La aplicación estará disponible en: `http://localhost:3000`
+* La aplicación estará disponible en: `http://localhost:5173`
 
 
 ## 📌 Funcionalidades principales
