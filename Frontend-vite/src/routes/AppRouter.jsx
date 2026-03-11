@@ -9,6 +9,7 @@ import { ListadoDepartamento } from '../departamentos/ListadoDepartamento.jsx'
 import { AgregarDepartamento } from '../departamentos/AgregarDepartamento.jsx'
 import { EditarDepartamento } from '../departamentos/EditarDepartamento.jsx'
 import { EliminarDepartamento } from '../departamentos/EliminarDepartamento.jsx'
+import { Login } from '../pages/Login.jsx'
 
 // Enrutador
 const AppRouter = () => {
@@ -19,6 +20,11 @@ const AppRouter = () => {
 
       {/* Definición de rutas */}
       <Routes>
+          {/* <Route path='/login' element={<Navigate to="/login"/>}/> */}
+
+          {/* Ruta del login */}
+          <Route exact path='/login' element={<Login/>}/>
+
           {/* En la ruta base / va a estar el listado */}
           <Route exact path="/" element={<ListadoEmpleados/>}/>
 
