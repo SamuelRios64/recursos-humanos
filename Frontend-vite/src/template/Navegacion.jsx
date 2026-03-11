@@ -31,6 +31,11 @@ export const Navegacion = () => {
                     <li className = "nav-item">
                       <Link className='nav-link' to="/departamentos">Departamentos</Link>
                     </li>
+
+                    {/* Link para ir al perfil */}
+                    <li className='nav-item'>
+                      <Link className='nav-link' to="/login">Inicio de sesión</Link>
+                    </li>
                 </ul>
                 </div>
             </div>
