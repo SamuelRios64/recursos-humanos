@@ -1,0 +1,27 @@
+# Ignorar carpetas de build y empaquetado
+/target/
+Backend/target/
+dist/
+build/
+*.log
+
+# Archivos de empaquetado comunes
+*.jar
+*.war
+*.ear
+
+# Configuración de IDEs
+.idea/
+.vscode/
+*.iml
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de entorno o credenciales
+*.env
+.env.local
+
+# Config Local
+**/application.properties
