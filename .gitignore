@@ -23,5 +23,6 @@ Thumbs.db
 *.env
 .env.local
 
-# Config Local
-**/application.properties
+# Spring Profiles
+Backend/src/main/resources/application-dev.properties
+Backend/src/main/resources/application-prod.properties
