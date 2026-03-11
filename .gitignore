@@ -24,4 +24,4 @@ Thumbs.db
 .env.local
 
 # Config Local
-**/application.properties
+#**/application.properties
