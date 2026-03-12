@@ -15,14 +15,33 @@ export const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+
+
     // Manejar los datos del form, falta enviar al backend
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        // Activa la carga simulada
+        setLoading(true)
+        // Manejo del estado de error
+        setError("");
+
         const data = {
             email,
             password,
         };
         console.table(data);
+
+        // Simulación de espera (Esto se borra cuando se conecte con el backend)
+        setTimeout(() => {
+
+            if(password !== "1234") {
+                setError("Correo o contraseña incorrectos")
+            }
+            setLoading(false)
+        }, 2000)
     }
 
     return (
@@ -50,12 +69,14 @@ export const Login = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
+                {error && <p className="login-error">{error}</p>}
 
                 {/* Button for send */}
                 <Button
-                    text="Entrar"
+                    text={loading ? "Entrando...":"Entrar"}
                     type="submit"
-                    icono={<IoLogIn className="icon-boton" />}
+                    icono={!loading && <IoLogIn className="icon-boton" />}
+                    disabled={loading}
                 />
             </form>
         </div>
