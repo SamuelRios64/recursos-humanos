@@ -1,64 +1,63 @@
-import { useState } from 'react'
+import { useState } from "react"
 import "../styles/login.css"
-import {IoIosToday} from "react-icons/io"
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import {IoLogInSharp } from "react-icons/io5"
+
+// Iconos
+import { IoIosToday } from "react-icons/io"
+import { IoLogIn } from "react-icons/io5"
+
+// Componentes del login
+import { InputField } from "../components/InputField"
+import { PasswordField } from "../components/passwordField"
+import { Button } from "../components/Button"
 
 export const Login = () => {
-
-    // Estamos para almacenar credenciales
+    // Estados para manejar
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const [showPassword, setShowPassword] = useState(false)
-
-    // funcion para validar con el backend
+    // Manejar los datos del form, falta enviar al backend
     const handleSubmit = (e) => {
         e.preventDefault();
-
         const data = {
             email,
-            password
+            password,
         };
-
         console.table(data);
     }
 
-  return (
-    <div className="login-container">
-        <h2 className='encabezado-login'>Inicio de sesión</h2>
-        <h1><IoIosToday/></h1>
-        <form onSubmit={handleSubmit}>
-            <div className='input-group'>
-                <label>Correo</label>
-                <input 
-                className='input-login'
-                type="email"
-                placeholder='correo@gmail.com'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required />
-            </div>
-            <div className='input-group'>
-                <label>Contraseña</label>
+    return (
+        <div className="login-container">
+            <h2 className="login-title">Inicio de sesión</h2>
 
-                <div className='password-wrapper'>
-                    <input 
-                    className='input-login' 
-                    type={showPassword ? "text" : "password"}
-                    placeholder='••••••••'
+            <IoIosToday className="login-icon" />
+
+            <form onSubmit={handleSubmit}>
+
+                {/* Input email */}
+                <InputField
+                    label="Correo"
+                    type="email"
+                    placeholder="correo@dominio.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+
+                {/* Input Password */}
+                <PasswordField
+                    label="Contraseña"
+                    placeholder="••••••••"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)} />
+                    onChange={(e) => setPassword(e.target.value)}
+                />
 
-                    <span className='span-password' onClick={() => setShowPassword(!showPassword)}>
-                        {showPassword ? <FaEyeSlash /> : <FaEye /> }
-                    </span> 
-                </div>
-
-            </div>
-            <button className='boton-enviar-login' type='submit'>Entrar <IoLogInSharp color='#01EAE9'/> </button>
-        </form>
-
-    </div>
-  )
+                {/* Button for send */}
+                <Button
+                    text="Entrar"
+                    type="submit"
+                    icono={<IoLogIn className="icon-boton" />}
+                />
+            </form>
+        </div>
+    )
 }
