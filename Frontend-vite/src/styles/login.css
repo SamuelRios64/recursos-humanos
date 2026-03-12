@@ -1,59 +1,92 @@
-body {
+body{
     font-family: Arial, Helvetica, sans-serif;
-    background: #f4f4f4;
+    background:#f4f4f4;
 }
 
+*{
+    box-sizing:border-box;
+}
 
-.login-container {
-    width: 320px;
-    margin: 100px auto;
-    background: white;
-    padding: 30px;
+.login-container{
+    width:320px;
+    margin:100px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+    text-align:center;
+
+}
+
+form {
+    width: 100%;
+}
+
+.login-title{
+    margin-bottom:10px;
+}
+
+.login-icon{
+    font-size:40px;
+    margin-bottom:20px;
+}
+
+.icon-boton {
+    font-size: 20px;
+}
+
+.input-group{
+    margin-bottom:15px;
+    width: 100%;     
+}       
+
+.input{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    box-sizing:border-box;
+    border:2px solid gray;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    text-align: center;
+    display:block;
 }
-
-.input-group {
-    margin-top: 10px;
-}
-
-.password-wrapper {
-    position: relative;
-    width: 100%;
-}
-
-.input-login {
-    width: 100%;
-    padding: 7px;
-    margin-top: 5px;
-    padding-right: 35px;
-    box-sizing: border-box;
-    border-color: black;
-}
-
-.span-password {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    user-select: none;
-}
-
 
 .input-password {
-    position: relative;
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    padding-right:35px;
+    border: 2px solid gray;
+    border-radius:10px;
+    display:block;
 }
 
+.wrapper{
+    position:relative;
+    width: 100%;
+}
 
-.boton-enviar-login {
-    width: 50%;
-    padding: 8px;
-    border: none;
-    background: black;
-    color: white;
-    border-radius: 10px;
-    margin: 20px auto;
-    text-align: center;
+.toggle-password{
+    position:absolute;
+    right:10px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    user-select:none;
+}
+
+.boton-componente {
+    font-size: 15px;
+    width:40%;
+    padding:8px;
+    border:none;
+    background:#323233;
+    color:white;
+    border-radius:10px;
+    margin:10px auto;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
 }
