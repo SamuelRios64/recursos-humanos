@@ -1,9 +1,10 @@
-package kase.rh.rh.config;
+package kase.rh.config;
 
-import jakarta.annotation.PostConstruct;  //Anotación para realizar una accion luego de levantar el proyecto
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate; //Accion que ejecuta las sentencias sql directamente
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;  //Anotación para realizar una accion luego de levantar el proyecto
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component; //Accion que ejecuta las sentencias sql directamente
+
+import jakarta.annotation.PostConstruct;
 
 @Component  //Define la clase como un componente, indicando que se debe ejecutar con el proyecto
 public class TriggerInitializer {
