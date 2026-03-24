@@ -28,7 +28,7 @@ public class Role {
     private RoleEnum role;
 
     // Muchos a muchos con la tabla intermedia roles_permissions (roles y permisos)
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "roles_permissions",
             joinColumns = @JoinColumn(name = "role_id"),

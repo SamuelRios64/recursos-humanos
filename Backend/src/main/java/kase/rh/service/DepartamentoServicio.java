@@ -1,7 +1,7 @@
 package kase.rh.service;
 
 import kase.rh.model.Departamento;
-import kase.rh.repository.DepartamentoRepositorio;
+import kase.rh.repository.DepartamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class DepartamentoServicio implements IDepartamentoServicio{
 
     @Autowired
-    private DepartamentoRepositorio departamentoRepositorio;
+    private DepartamentoRepository departamentoRepositorio;
 
     @Override
     public List<Departamento> listarDepartamentos() {
@@ -30,11 +30,9 @@ public class DepartamentoServicio implements IDepartamentoServicio{
         return departamentoRepositorio.save(departamento);
     }
 
-    // Metodo que guarda un departamento y se le agrega un id autoincrementado
+    // Metodo que guarda un departamento
     @Override
     public Departamento guardarDepartamentoNuevo(Departamento departamento){
-        long idNuevo = departamentoRepositorio.obtenerId() + 1;
-        departamento.setIdDepartamento(idNuevo);
         return departamentoRepositorio.save(departamento);
 
     }

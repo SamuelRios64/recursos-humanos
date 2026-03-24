@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 // Repositorio de permisos
 @Repository
-public interface PermissionRepository extends JpaRepository<Permission, Long> {
-}
+public interface PermissionRepository extends JpaRepository<Permission, Long> {}
