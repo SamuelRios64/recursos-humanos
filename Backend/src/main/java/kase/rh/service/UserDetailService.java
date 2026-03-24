@@ -7,12 +7,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
+import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDetailsService {
+@Service
+public class UserDetailService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -36,7 +38,7 @@ public class UserDetailsService {
 
             // retorna objeto User de Spring Security
             return new User(
-                    user.getName(),
+                    user.getEmail(),
                     user.getPassword(),
                     user.getIsEnabled(),
                     user.getCredentialNoExpired(),
