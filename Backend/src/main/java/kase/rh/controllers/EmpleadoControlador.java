@@ -2,23 +2,29 @@ package kase.rh.controllers;
 
 import kase.rh.exception.RecursoNoEncontradoExcepcion;
 import kase.rh.model.Empleado;
+import kase.rh.repository.UserRepository;
 import kase.rh.service.EmpleadoServicio;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 // http://localhost:8080/rh-app
-@RequestMapping("/rh-app")
+@RequestMapping("/empleadosController")
 // Anotacion para hacer y recibir peticiones desde el frontend
 @CrossOrigin(value = "http://localhost:5173")
 public class EmpleadoControlador {
 
     // Atributo para el manejo del logger
     private static final Logger logger = LoggerFactory.getLogger(EmpleadoControlador.class);
+
+    // Usuario o empleado
+    @Autowired
+    private UserRepository userRepository;
 
     // Dependencia de Capa de servicio
     @Autowired
@@ -27,11 +33,11 @@ public class EmpleadoControlador {
     // Metodo que lista todos los empleados
     // http://localhost:8080/rh-app/empleados
     @RequestMapping(value = "/empleados", method = RequestMethod.GET)
-    public List<Empleado> obtenerEmpleados(){
+    public ResponseEntity<?> obtenerEmpleados(){
         // Consultamos todos los empleados de la bd
-        var empleados = empleadoServicio.listarEmpleados();
+        var empleados = userRepository.findAll();
         empleados.forEach((empleado -> logger.info(empleado.toString())));
-        return empleados;
+        return new ResponseEntity<>(empleados, HttpStatus.OK);
     }
 
     // Metodo que guarda un empleado
