@@ -36,7 +36,6 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void initializePermisosAndUsuarios() {
-        System.out.println("Inicializando datos de prueba...");
         var passwordEncoder = applicationConfig.passwordEncoder();
         userRepository.deleteAll();
         roleRepository.deleteAll();
@@ -66,7 +65,7 @@ public class DataInitializer implements CommandLineRunner {
         sistemas = departamentoRepository.save(sistemas);
 
         UserEntity samuel = UserEntity.builder()
-                .id(10281340791L)
+                .id(1028140791L)
                 .name("Samuel")
                 .departamento(sistemas)
                 .sueldo(1000)
@@ -78,9 +77,6 @@ public class DataInitializer implements CommandLineRunner {
                 .credentialNoExpired(true)
                 .roles(Set.of(roleAdmin))
                 .build();
-
-        System.out.println(samuel);
-
         userRepository.saveAll(List.of(samuel));
     }
 }
